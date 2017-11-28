@@ -1,0 +1,20 @@
+### List the OMIM names of causative genes for diseases which are the Lysosomal Storage Diseases ###
+prefix ggdsch: <http://jcggdb.jp/rdf/diseases/ggdonto-schema#>
+prefix gmsch: <http://jcggdb.jp/rdf/diseases/gmncbi-schema#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+PREFIX refexo: <http://purl.jp/bio/01/refexo#>
+PREFIX tgo:     <http://purl.jp/bio/101/opentggates/ontology/>
+PREFIX sio:     <http://semanticscience.org/resource/>
+PREFIX cmo:     <http://integbio.jp/rdf/ontology/cmo>
+
+select distinct ?geneSymbol ?desc ?probe
+FROM NAMED <http://rdf.integbio.jp/dataset/open-tggates>
+where {
+ # Open TG GATE
+ graph <http://rdf.integbio.jp/dataset/open-tggates> {
+ ?probe rdfs:seeAlso ?ncbiUrl.
+ ?probe a tgo:Probe.
+ ?s tgo:probe 
+ }
+} limit 10
